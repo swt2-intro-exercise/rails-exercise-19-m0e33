@@ -15,4 +15,12 @@ describe "New author page", type: :feature do
    expect(page).to have_field('author[homepage]')
  end
 
+  it "should render error field when invalid instance is created" do
+    visit new_author_path
+    fill_in "author[first_name]", with: 'Example User'
+    fill_in "author[last_name]", with: ''
+    fill_in "author[homepage]", with: 'Example User.de'
+    find('input[name="commit"]').click
+    expect(page).to have_text("error")
+  end
 end
