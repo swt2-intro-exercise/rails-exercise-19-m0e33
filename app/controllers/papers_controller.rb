@@ -21,7 +21,9 @@ class PapersController < ApplicationController
 
   # POST /papers
   def create
-    @paper = Paper.new(paper_params)
+    @author = Author.find(params[:author_id])
+    @paper = @author.papers.create(paper_params)
+    redirect_to author_path(@author)
 
     if @paper.save
       redirect_to @paper, notice: 'Paper was successfully created.'
