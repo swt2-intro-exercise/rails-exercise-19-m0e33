@@ -9,7 +9,7 @@ class AuthorsController < ApplicationController
   end
 
   def new
-
+    @author = Author.new
   end
 
   def create
